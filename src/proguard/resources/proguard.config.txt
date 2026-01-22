@@ -14,11 +14,23 @@
 }
 
 -dontwarn com.apple.eawt.**
+-dontwarn javax.swing.plaf.nimbus.**
+-dontwarn org.jd.core.**
+-dontwarn java.lang.invoke.**
+-dontwarn sun.misc.**
+-ignorewarnings
 -keepattributes Signature
 
 -keep public interface org.jd.gui.api.** {*;}
 -keep public interface org.jd.gui.spi.** {*;}
--keep public class * extends org.jd.gui.spi.*
+-keep public class * implements org.jd.gui.spi.* {
+    public <init>(...);
+    public *;
+}
+-keep public class org.jd.gui.service.** {
+    public <init>(...);
+    public *;
+}
 
 -keep class org.fife.ui.rsyntaxtextarea.TokenTypes {public static final <fields>;}
 -keep class org.fife.ui.rsyntaxtextarea.DefaultTokenMakerFactory
